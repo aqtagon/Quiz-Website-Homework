@@ -28,5 +28,10 @@ startBtn.addEventListener("click", function(){
     var startDiv = document.querySelector(".startDiv");
     startDiv.classList.add("hide");
     var quizDiv = document.querySelector(".quizDiv");
-    quizDiv.classList.remove("hide");    
+    quizDiv.classList.remove("hide"); 
+    displayQuestion()   
 })
+function displayQuestion(){
+    var questionEl = document.querySelector(".questionEl")
+    questionEl.textContent = questions[0].question
+}
