@@ -63,6 +63,10 @@ var questions = [
         correctAnswer: "function myFunction()"
     }
 ];
+
+var currentQuestionIndex = 0;
+var score = 0;
+
 startBtn.addEventListener("click", function(){
     //Need to hide start button by adding hide to the class
     // Need to show questions by taking away hide in the class 
@@ -70,9 +74,22 @@ startBtn.addEventListener("click", function(){
     startDiv.classList.add("hide");
     var quizDiv = document.querySelector(".quizDiv");
     quizDiv.classList.remove("hide"); 
-    displayQuestion()   
-})
+    displayQuestion();   
+});
+
 function displayQuestion(){
-    var questionEl = document.querySelector(".questionEl")
-    questionEl.textContent = questions[0].question
+    var questionEl = document.querySelector(".questionEl");
+    var answerButtons = document.querySelectorAll(".answer");
+
+    questionEl.textContent = questions[currentQuestionIndex].question;
+
+    for (var i = 0; i < answerButtons.length; i++) {
+        answerButtons[i].textContent = questions[currentQuestionIndex].answers[i];
+    }
+
+    for (var i = 0; i < answerButtons.length; i++) {
+        answerButtons[i].addEventListener("click", function () {
+
+        });
+    }
 }
