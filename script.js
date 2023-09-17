@@ -93,3 +93,20 @@ function displayQuestion(){
         });
     }
 }
+
+function checkAnswer(selectAnswer) {
+    var correctAnswer = questions[currentQuestionIndex].correctAnswer;
+
+    if (selectedAnswer === correctAnswer) {
+        score++;
+    }
+
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < questions.length) {
+        displayQuestion();
+    } else {
+        endQuiz();
+    }
+}
+
