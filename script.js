@@ -17,16 +17,16 @@ var questions = [
             "div",
             "img",
             "meta",
-            "head",
+            "head"
         ],
         correctAnswer: "img"
     },
     {
         question: "Which HTML element do we put the JavaScript inside of?",
         answers: [
-            "<js>"
-            "<javascript>"
-            "<script>"
+            "<js>",
+            "<javascript>",
+            "<script>",
             "<banana>"
         ],
         correctAnswer: "<script>"
@@ -34,9 +34,9 @@ var questions = [
     {
         question: "Which CSS property is used to change the text color of an element?",
         answers: [
-            "css-color"
-            "text-color"
-            "color"
+            "css-color",
+            "text-color",
+            "color",
             "css-text"
         ],
         correctAnswer: "color"
@@ -44,9 +44,9 @@ var questions = [
     {
         question: "Select the correct answer for which sign is used for jQuery for a shortcut",
         answers: [
-            "$"
-            "!"
-            "#"
+            "$",
+            "!",
+            "#",
             "@"
     
         ],
@@ -55,9 +55,9 @@ var questions = [
     {
         question: "How do you create a function in JavaScript?",
         answers: [
-            "function-functionName{}"
-            "myFunction=function()"
-            "function.myFunction[]"
+            "function-functionName{}",
+            "myFunction=function()",
+            "function.myFunction[]",
             "function myFunction()"
         ],
         correctAnswer: "function myFunction()"
@@ -84,17 +84,23 @@ function displayQuestion(){
     questionEl.textContent = questions[currentQuestionIndex].question;
 
     for (var i = 0; i < answerButtons.length; i++) {
+        if (questions[currentQuestionIndex].answers[i]) {
         answerButtons[i].textContent = questions[currentQuestionIndex].answers[i];
+        answerButtons[i].classList.remove("hide");
+    }else {
+       answerButtons[i].classList.add("hide");
+        }
     }
 
     for (var i = 0; i < answerButtons.length; i++) {
-        answerButtons[i].addEventListener("click", function () {
-
+        answerButtons[i].addEventListener("click", function (event) {
+            var selectedAnswer = event.target.textContent;
+            checkAnswer(selectedAnswer);
         });
     }
 }
 
-function checkAnswer(selectAnswer) {
+function checkAnswer(selectedAnswer) {
     var correctAnswer = questions[currentQuestionIndex].correctAnswer;
 
     if (selectedAnswer === correctAnswer) {
@@ -110,3 +116,27 @@ function checkAnswer(selectAnswer) {
     }
 }
 
+function endQuiz() {
+    var quizDiv = document.querySelector(".quizDiv");
+    quizDiv.classList.add("hide");
+
+    var scoreDisplay = document.querySelector(".scoreDisplay");
+    var initialsInput = document.getElementById("initials");
+    var saveScoreBtn = document.getElementById("saveScoreBtn");
+    var scoreSpan = document.getElementById("score");
+
+    scoreSpan.textContent = score;
+    scoreDisplay.classList.remove("hide");
+
+    saveScoreBtn.addEventListener("click", function() {
+        var initials = initialsInput.value;
+        if (initials) {
+            alert("Score saved!");
+        } else {
+            alert("Please enter your initials.");
+        }
+    });
+
+    var saveScoreForm = document.querySelector(".saveScoreForm");
+    saveScoreForm.classList.remove("hide");
+}
