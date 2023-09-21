@@ -1,14 +1,4 @@
-// GIVEN I am taking a code quiz
-// WHEN I click the start button
-// THEN a timer starts and I am presented with a question
-// WHEN I answer a question
-// THEN I am presented with another question
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my initials and my score
+
 var startBtn = document.querySelector(".startBtn");
 var questions = [
     {
@@ -24,12 +14,12 @@ var questions = [
     {
         question: "Which HTML element do we put the JavaScript inside of?",
         answers: [
-            "<js>",
-            "<javascript>",
-            "<script>",
-            "<banana>"
+            "js",
+            "javascript",
+            "script",
+            "banana"
         ],
-        correctAnswer: "<script>"
+        correctAnswer: "script"
     },
     {
         question: "Which CSS property is used to change the text color of an element?",
@@ -67,9 +57,7 @@ var questions = [
 var currentQuestionIndex = 0;
 var score = 0;
 
-startBtn.addEventListener("click", function(){
-    //Need to hide start button by adding hide to the class
-    // Need to show questions by taking away hide in the class 
+startBtn.addEventListener("click", function() {
     var startDiv = document.querySelector(".startDiv");
     startDiv.classList.add("hide");
     var quizDiv = document.querySelector(".quizDiv");
@@ -77,30 +65,33 @@ startBtn.addEventListener("click", function(){
     displayQuestion();   
 });
 
-function displayQuestion(){
+function displayQuestion() {
     var questionEl = document.querySelector(".questionEl");
     var answerButtons = document.querySelectorAll(".answer");
+
 
     questionEl.textContent = questions[currentQuestionIndex].question;
 
     for (var i = 0; i < answerButtons.length; i++) {
-        if (questions[currentQuestionIndex].answers[i]) {
         answerButtons[i].textContent = questions[currentQuestionIndex].answers[i];
         answerButtons[i].classList.remove("hide");
-    }else {
-       answerButtons[i].classList.add("hide");
-        }
+        
+    
     }
 
     for (var i = 0; i < answerButtons.length; i++) {
-        answerButtons[i].addEventListener("click", function (event) {
-            var selectedAnswer = event.target.textContent;
-            checkAnswer(selectedAnswer);
-        });
+        answerButtons[i].removeEventListener("click", handleAnswerClick); 
+        
+    }
+
+    for (var i = 0; i < answerButtons.length; i++) {
+        answerButtons[i].addEventListener("click", handleAnswerClick);
     }
 }
 
-function checkAnswer(selectedAnswer) {
+
+function handleAnswerClick(event) {
+    var selectedAnswer = event.target.textContent;
     var correctAnswer = questions[currentQuestionIndex].correctAnswer;
 
     if (selectedAnswer === correctAnswer) {
@@ -115,6 +106,7 @@ function checkAnswer(selectedAnswer) {
         endQuiz();
     }
 }
+
 
 function endQuiz() {
     var quizDiv = document.querySelector(".quizDiv");
