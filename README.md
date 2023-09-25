@@ -20,4 +20,10 @@ The goal of this assignment was to create a quiz website from scratch using the 
 - Added end quiz function and score display
 
 #### Result
-- 
+- See Quiz website here:
+- Preview: ![Quiz-Website-Homework](<images/Screenshot 2023-09-24 at 7.03.20 PM.png>)
+- Website: [Link](https://aqtagon.github.io/Quiz-Website-Homework/)
+
+Note: Received assistance from Tutor Julio Valdez
+
+Used these websites for assitance: google.com and chatgpt

@@ -21,13 +21,13 @@
     font-size: 18px;
     margin: 10px;
     padding: 10px 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #6bc469;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .answer:hover {
-    background-color: #f0f0f0;
+    background-color: #a94d4d;
 }
 
 .scoreDisplay {
